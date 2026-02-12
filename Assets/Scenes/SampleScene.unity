@@ -119,6 +119,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &42040431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2152856744864430822, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_Name
+      value: Wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427386976560136852, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427386976560136852, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427386976560136852, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -209498541
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.771233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.1879714
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395947570722198514, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e87340ea6275b6041bb19f649ff29f17, type: 3}
 --- !u!1 &271400393
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97823ec9fe8b7014ca50b92106f2b066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 5
+  speed: 8
 --- !u!114 &271400400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,14 +941,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156451868}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -890,7 +959,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1156451871
 SpriteRenderer:
   serializedVersion: 2
@@ -1000,11 +1069,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   currentState: 0
-  speed: 2
+  speed: 4
   patrolPoints:
   - {fileID: 1608460936}
   - {fileID: 1480233428}
   waitTime: 1
+  visionRadius: 3
+  chaseRadius: 7
+  attackDistance: 0.8
 --- !u!1 &1181852526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1303,9 @@ MonoBehaviour:
   - {fileID: 2085385873}
   - {fileID: 1912184741}
   waitTime: 4
+  visionRadius: 8
+  chaseRadius: 15
+  attackDistance: 1
 --- !u!95 &1417599183
 Animator:
   serializedVersion: 7
@@ -1298,14 +1373,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417599180}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1316,7 +1391,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1417599186
 SpriteRenderer:
   serializedVersion: 2
@@ -4335,6 +4410,7 @@ MonoBehaviour:
   arrow: {fileID: 11400000, guid: 32c02f2bb504ed746980284bd09543b9, type: 2}
   woodCost: 1
   amountProduced: 3
+  Interface: {fileID: 0}
 --- !u!1 &1691998912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,7 +4436,7 @@ Transform:
   m_GameObject: {fileID: 1691998912}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77923, y: -0.02966, z: 0}
+  m_LocalPosition: {x: -4.79, y: -1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5911,3 +5987,4 @@ SceneRoots:
   - {fileID: 1847504262}
   - {fileID: 1691998913}
   - {fileID: 452519971}
+  - {fileID: 42040431}

@@ -34,7 +34,7 @@ public class InventoryInterface : MonoBehaviour
             // Instantiate não se confundir com ele
             child.transform.SetParent(null);
 
-            Destroy(child);
+            Destroy(child.gameObject);
         }
 
         foreach (InventorySlots slot in inventorySystem.inventory)

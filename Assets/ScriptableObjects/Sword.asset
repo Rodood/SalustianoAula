@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DataItem
   itemName: Short Sword
   id: espada_curta
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e42c17d1d32f2f04c9cec7a8c6de9d59, type: 3}
   description: 'The first sword for any knight apprentice. '
   value: 15
   stackable: 0

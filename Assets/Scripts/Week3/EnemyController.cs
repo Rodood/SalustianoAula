@@ -24,18 +24,37 @@ public class EnemyController : MonoBehaviour
     private float idleTime = 0f;
     private float currentIdleTime = 0f;
 
+    [Header("Sensors")]
+    public float visionRadius = 5.0f;
+    public float chaseRadius = 8.0f;
+    public float attackDistance = 1.0f;
+
     Animator anim;
     bool facingRight = true;
+    Transform playerPos;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if(player != null)
+        {
+            playerPos = player.transform;
+        }
+
         currentState = EnemyState.Idle;
         idleTime = waitTime;
     }
 
     private void Update()
     {
+        if (playerPos == null) return;
+
+        float distance = Vector2.Distance(transform.position,
+            playerPos.position);
+
         switch (currentState)
         {
             case EnemyState.Idle:
@@ -48,13 +67,49 @@ public class EnemyController : MonoBehaviour
                     currentIdleTime = 0f;
                 }
                 break;
+
             case EnemyState.Patrol:
-                anim.SetBool("Walk", true);
+
+                if (distance <= visionRadius)
+                    currentState = EnemyState.Chase;
+
                 Patrol();
                 break;
             case EnemyState.Chase:
+
+                if (distance > chaseRadius)
+                    currentState = EnemyState.Patrol;
+
+                if (distance <= attackDistance)
+                    StartCombat();
+                else
+                    Chase();
+
                 break;
         }
+    }
+
+    private void StartCombat()
+    {
+        Debug.Log("Combat Start!");
+    }
+
+    private void Chase()
+    {
+        Vector3 direction = (playerPos.position - transform.position).normalized;
+
+        anim.SetBool("Walk", true);
+        anim.SetFloat("Horizontal", direction.x);
+        anim.SetFloat("Vertical", direction.y);
+
+        if ((direction.x < -0.1f && facingRight) ||
+            (direction.x > 0.1f && !facingRight))
+        {
+            Flip();
+        }
+
+        transform.position = Vector2.MoveTowards(transform.position,
+            playerPos.position, speed * 1.5f * Time.deltaTime);
     }
 
     private void Patrol()
@@ -104,5 +159,14 @@ public class EnemyController : MonoBehaviour
         gameObject.transform.localScale = currentScale;
 
         facingRight = !facingRight;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, visionRadius);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chaseRadius);
     }
 }

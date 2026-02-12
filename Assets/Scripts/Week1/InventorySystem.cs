@@ -50,13 +50,15 @@ public class InventorySystem : MonoBehaviour
                 inventory[i].RemoveQuantity(qtd);
                 Debug.Log($"Removed + {qtd}");
 
-                if (qtd <= 0)
+                if (inventory[i].quantity <= 0)
                 {
                     inventory.RemoveAt(i);
                 }
 
                 if (onInventoryChanged != null)
+                {
                     onInventoryChanged.Invoke();
+                }
 
                 return;
             }
