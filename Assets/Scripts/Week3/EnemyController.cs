@@ -33,19 +33,37 @@ public class EnemyController : MonoBehaviour
     bool facingRight = true;
     Transform playerPos;
 
+    // --- Movement ---
+    Rigidbody2D rb;
+    Vector2 movementDirection;
+    float currentSpeedMultiplier = 1f;
+
+    int enemyLayer;
+    int obstacleLayer;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+
+        rb.freezeRotation = true;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if(player != null)
+        if (player != null)
         {
             playerPos = player.transform;
         }
 
         currentState = EnemyState.Idle;
         idleTime = waitTime;
+
+        // Layer setup
+        enemyLayer = LayerMask.NameToLayer("Enemy");
+        obstacleLayer = LayerMask.NameToLayer("Obstacle");
+
+        // Ignore obstacle collision by default (Patrol mode)
+        Physics2D.IgnoreLayerCollision(enemyLayer, obstacleLayer, false);
     }
 
     private void Update()
@@ -59,9 +77,10 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyState.Idle:
                 anim.SetBool("Walk", false);
+                movementDirection = Vector2.zero;
 
                 currentIdleTime += Time.deltaTime;
-                if(currentIdleTime > idleTime)
+                if (currentIdleTime > idleTime)
                 {
                     currentState = EnemyState.Patrol;
                     currentIdleTime = 0f;
@@ -71,22 +90,39 @@ public class EnemyController : MonoBehaviour
             case EnemyState.Patrol:
 
                 if (distance <= visionRadius)
+                {
                     currentState = EnemyState.Chase;
+                    Physics2D.IgnoreLayerCollision(enemyLayer, obstacleLayer, false);
+                }
 
                 Patrol();
                 break;
+
             case EnemyState.Chase:
 
                 if (distance > chaseRadius)
+                {
                     currentState = EnemyState.Patrol;
+                    Physics2D.IgnoreLayerCollision(enemyLayer, obstacleLayer, true);
+                }
 
                 if (distance <= attackDistance)
+                {
                     StartCombat();
+                    movementDirection = Vector2.zero;
+                }
                 else
+                {
                     Chase();
+                }
 
                 break;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = movementDirection * speed * currentSpeedMultiplier;
     }
 
     private void StartCombat()
@@ -96,7 +132,7 @@ public class EnemyController : MonoBehaviour
 
     private void Chase()
     {
-        Vector3 direction = (playerPos.position - transform.position).normalized;
+        Vector2 direction = (playerPos.position - transform.position).normalized;
 
         anim.SetBool("Walk", true);
         anim.SetFloat("Horizontal", direction.x);
@@ -108,26 +144,27 @@ public class EnemyController : MonoBehaviour
             Flip();
         }
 
-        transform.position = Vector2.MoveTowards(transform.position,
-            playerPos.position, speed * 1.5f * Time.deltaTime);
+        movementDirection = direction;
+        currentSpeedMultiplier = 1.5f;
     }
 
     private void Patrol()
     {
         Transform target = patrolPoints[currentPatrolIndex];
 
-        if(Vector2.Distance(transform.position, target.position) < 0.1f)
+        if (Vector2.Distance(transform.position, target.position) < 0.1f)
         {
             anim.SetBool("Walk", false);
+            movementDirection = Vector2.zero;
 
             currentWaitTime += Time.deltaTime;
 
-            if(currentWaitTime >= waitTime)
+            if (currentWaitTime >= waitTime)
             {
                 currentWaitTime = 0f;
                 currentPatrolIndex++;
 
-                if(currentPatrolIndex >= patrolPoints.Length)
+                if (currentPatrolIndex >= patrolPoints.Length)
                 {
                     currentPatrolIndex = 0;
                 }
@@ -135,20 +172,20 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            Vector3 direction = (target.position - transform.position).normalized;
+            Vector2 direction = (target.position - transform.position).normalized;
 
             anim.SetBool("Walk", true);
             anim.SetFloat("Horizontal", direction.x);
             anim.SetFloat("Vertical", direction.y);
 
-            if((direction.x < -0.1f && facingRight) || 
+            if ((direction.x < -0.1f && facingRight) ||
                 (direction.x > 0.1f && !facingRight))
             {
                 Flip();
             }
 
-            transform.position = Vector2.MoveTowards(transform.position, target.position,
-                speed * Time.deltaTime);
+            movementDirection = direction;
+            currentSpeedMultiplier = 1f;
         }
     }
 

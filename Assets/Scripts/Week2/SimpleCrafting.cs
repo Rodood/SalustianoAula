@@ -12,17 +12,11 @@ public class SimpleCrafting : MonoBehaviour
     public int woodCost = 1;
     public int amountProduced = 3;
 
-    public InventoryInterface Interface;
-
     public void CraftArrows()
     {
         if (inventorySystem.HasItem(wood, woodCost))
         {
             inventorySystem.RemoveItem(wood, woodCost);
-
-            int i = 0;
-            while(i <10)
-                i++;
 
             inventorySystem.AddItem(arrow, amountProduced);
 
