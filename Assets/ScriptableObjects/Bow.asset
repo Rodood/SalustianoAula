@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 721d95b0f41cf06499dce9b522664cdf, type: 3}
-  m_Name: Food
+  m_Name: Bow
   m_EditorClassIdentifier: Assembly-CSharp::DataItem
-  itemName: Food
-  id: comida
-  icon: {fileID: 3914928599017267308, guid: 0ec86fa626ca68546bd6581c1dd35a5d, type: 3}
-  description: An important item for any explorer in their journey. Usually need
-    to eat to recover their strength.
-  value: 4
-  stackable: 1
+  itemName: Bow
+  id: arco
+  icon: {fileID: -5162836958105973108, guid: b0766e0e382142a4bbaba68e0c25169f, type: 3}
+  description: An apprentice bow for those who wish to become a great hunter.
+  value: 20
+  stackable: 0

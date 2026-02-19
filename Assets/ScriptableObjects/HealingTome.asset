@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 721d95b0f41cf06499dce9b522664cdf, type: 3}
-  m_Name: Food
+  m_Name: HealingTome
   m_EditorClassIdentifier: Assembly-CSharp::DataItem
-  itemName: Food
-  id: comida
-  icon: {fileID: 3914928599017267308, guid: 0ec86fa626ca68546bd6581c1dd35a5d, type: 3}
-  description: An important item for any explorer in their journey. Usually need
-    to eat to recover their strength.
-  value: 4
+  itemName: HealingTome
+  id: livro_da_cura
+  icon: {fileID: -4399918700794476445, guid: 457e586d0daeb9248bfb76cb37c7a2d6, type: 3}
+  description: Recovers 40 HP. But unlike the potion, it heals all members of your
+    party. Highly recommended for adventurers who explores in groups.
+  value: 40
   stackable: 1

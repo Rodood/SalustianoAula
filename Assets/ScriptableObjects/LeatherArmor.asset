@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 721d95b0f41cf06499dce9b522664cdf, type: 3}
-  m_Name: Food
+  m_Name: LeatherArmor
   m_EditorClassIdentifier: Assembly-CSharp::DataItem
-  itemName: Food
-  id: comida
-  icon: {fileID: 3914928599017267308, guid: 0ec86fa626ca68546bd6581c1dd35a5d, type: 3}
-  description: An important item for any explorer in their journey. Usually need
-    to eat to recover their strength.
-  value: 4
-  stackable: 1
+  itemName: LeatherArmor
+  id: Armadura_de_Couro
+  icon: {fileID: 2913249149326906964, guid: e5e6b18ea1a90f643a7dbd8ab64f835f, type: 3}
+  description: An almost fullbody leather armor, dont worry it covers your legs too!
+  value: 50
+  stackable: 0

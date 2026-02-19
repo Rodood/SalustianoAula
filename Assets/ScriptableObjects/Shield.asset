@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DataItem
   itemName: Wooden Shield
   id: escudo_de_madeira
-  icon: {fileID: 0}
+  icon: {fileID: 4276950136020775699, guid: 0ba43877301561a4db135f37225bbd34, type: 3}
   description: A shield made for practicing defense
   value: 12
   stackable: 0
