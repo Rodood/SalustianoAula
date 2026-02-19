@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class EnemyController : MonoBehaviour
         Patrol,
         Chase
     }
+
+    [Header("Identidade")]
+    public string nameID;
 
     [Header("Enemy AI")]
     public EnemyState currentState;
@@ -127,7 +131,9 @@ public class EnemyController : MonoBehaviour
 
     private void StartCombat()
     {
-        Debug.Log("Combat Start!");
+        GlobalData.enemyToGenerate = nameID;
+
+        SceneManager.LoadScene("Combat");
     }
 
     private void Chase()
