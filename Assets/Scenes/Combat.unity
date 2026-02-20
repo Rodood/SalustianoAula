@@ -2463,11 +2463,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1087b702009595442bdacf1ef24e35e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatManager
-  enemyPoint: {fileID: 0}
-  heroPoint: {fileID: 0}
-  prefabMole: {fileID: 0}
-  prefabTreant: {fileID: 0}
-  prefabPlayer: {fileID: 0}
+  enemyPoint: {fileID: 1807605925}
+  heroPoint: {fileID: 788129740}
+  prefabMole: {fileID: 1428840449754937717, guid: 1b94af80b8d23bc469a12c59fec7f0cc, type: 3}
+  prefabTreant: {fileID: 7235769030767955701, guid: 0c8ff54cc7ba337478b3cec0e66a93ee, type: 3}
+  prefabPlayer: {fileID: 1124916318646952364, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
 --- !u!4 &1363672919
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,9 @@ public class CombatManager : MonoBehaviour
         if(hero.GetComponent<PlayerMovement>() != null)
             hero.GetComponent<PlayerMovement>().enabled = false;
 
+        if(hero.GetComponent<InventoryInputs>() != null)
+            hero.GetComponent<InventoryInputs>().enabled = false;
+
         string enemy = GlobalData.enemyToGenerate;
         GameObject genereatedMonster = null;
 
