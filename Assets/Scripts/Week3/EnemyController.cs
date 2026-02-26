@@ -1,6 +1,5 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -33,6 +32,10 @@ public class EnemyController : MonoBehaviour
     public float chaseRadius = 8.0f;
     public float attackDistance = 1.0f;
 
+    [Header("Combat & ID")]
+    public string uniqueID;
+    public GameObject arenaPrefab;
+
     Animator anim;
     bool facingRight = true;
     Transform playerPos;
@@ -47,6 +50,12 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        if (GlobalData.defeatedEnemies.Contains(uniqueID))
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -131,9 +140,15 @@ public class EnemyController : MonoBehaviour
 
     private void StartCombat()
     {
-        GlobalData.enemyToGenerate = nameID;
+        BattleStarter starter = GetComponentInParent<BattleStarter>();
 
-        SceneManager.LoadScene("Combat");
+        List<GameObject> _enemyList = new List<GameObject>();
+        _enemyList.Add(arenaPrefab);
+
+        if (starter != null)
+        {
+            starter.StartBattle(playerPos.gameObject, uniqueID, _enemyList);
+        }
     }
 
     private void Chase()

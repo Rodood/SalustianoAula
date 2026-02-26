@@ -1,14 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    [Header("Positions")]
-    public Transform enemyPoint;
+    public Transform[] enemyPoints;
     public Transform heroPoint;
-
-    [Header("Prefabs")]
-    public GameObject prefabMole;
-    public GameObject prefabTreant;
     public GameObject prefabPlayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,27 +12,19 @@ public class CombatManager : MonoBehaviour
     {
         GameObject hero = Instantiate(prefabPlayer, heroPoint.position, Quaternion.identity);
 
-        if(hero.GetComponent<PlayerMovement>() != null)
+        if (hero.GetComponent<PlayerMovement>() != null)
             hero.GetComponent<PlayerMovement>().enabled = false;
 
-        if(hero.GetComponent<InventoryInputs>() != null)
+        if (hero.GetComponent<InventoryInputs>() != null)
             hero.GetComponent<InventoryInputs>().enabled = false;
 
-        string enemy = GlobalData.enemyToGenerate;
-        GameObject genereatedMonster = null;
+        List<GameObject> enemies = GlobalData.enemyPrefabs;
 
-        if(enemy == "Mole")
-            genereatedMonster = Instantiate(prefabMole, enemyPoint.position, Quaternion.identity);
-        else if(enemy == "Treant")
-            genereatedMonster = Instantiate(prefabTreant, enemyPoint.position, Quaternion.identity);
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            if (i >= enemyPoints.Length) break;
 
-        if(genereatedMonster != null)
-            genereatedMonster.GetComponent<EnemyController>().enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            Instantiate(enemies[i], enemyPoints[i].position, Quaternion.identity);
+        }
     }
 }

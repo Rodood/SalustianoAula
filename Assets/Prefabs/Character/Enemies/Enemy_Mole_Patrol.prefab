@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 4645305920773802746}
   - component: {fileID: 5361401376481814854}
   - component: {fileID: 2664253285375778880}
+  - component: {fileID: 2437174811990433335}
   m_Layer: 6
-  m_Name: Enemy_Mole
+  m_Name: Enemy_Mole_Patrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,3 +204,19 @@ MonoBehaviour:
   visionRadius: 3
   chaseRadius: 7
   attackDistance: 0.8
+  arenaPrefab: {fileID: 4566729088567907843, guid: dce5dddfde8489c4ea5c58e6aa3f8cff, type: 3}
+--- !u!114 &2437174811990433335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428840449754937717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2764e1a5354cb4642bc8a9b2334f899b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatAttributes
+  characterName: Mole
+  maxHP: 100
+  baseDamage: 5

@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (GlobalData.playerReturnPos != Vector2.zero)
+            transform.position = GlobalData.playerReturnPos;
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
