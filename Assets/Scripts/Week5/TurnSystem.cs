@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum BattleState
 {
@@ -15,9 +17,10 @@ public enum BattleState
 public class TurnSystem : MonoBehaviour
 {
     public BattleState currentState;
+    public Slider heroSlider;
 
     CombatAttributes hero;
-    CombatAttributes enemy;
+    List<CombatAttributes> aliveEnemies = new List<CombatAttributes>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,8 +37,15 @@ public class TurnSystem : MonoBehaviour
         hero = GameObject.FindGameObjectWithTag("Player").
             GetComponent<CombatAttributes>();
 
-        enemy = GameObject.FindGameObjectWithTag("Enemy").
-            GetComponent<CombatAttributes>();
+        hero.healthBar = heroSlider;
+        hero.UpdateBar();
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject enemy in enemies)
+        {
+            aliveEnemies.Add(enemy.GetComponent<CombatAttributes>());
+        }
 
         currentState = BattleState.PlayerTurn;
         StartPlayerTurn();
@@ -43,32 +53,49 @@ public class TurnSystem : MonoBehaviour
 
     private void StartPlayerTurn()
     {
-        Debug.Log("Your Turn! Press space to attack!");
+        Debug.Log("Player turn!");
     }
 
-    private void Update()
+    public void AttackBtn()
     {
-        switch (currentState)
+        if (currentState != BattleState.PlayerTurn) return;
+
+        CombatAttributes target = aliveEnemies[0];
+
+        target.TakeDamage(hero.baseDamage);
+
+        if(target.currentHP <= 0)
         {
-            case BattleState.PlayerTurn:
-            
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Debug.Log("Player attacked monster!");
-                    enemy.TakeDamage(hero.baseDamage);
+            hero.GainXP(target.xpDrop);
 
-                    VerifyEndPlayerTurn();
-                }
+            GlobalData.playerEcon += target.coinDrop;
 
-                break;
+            aliveEnemies.RemoveAt(0);
         }
+
+        VerifyEndPlayerTurn();
+    }
+
+    public void PotionBtn()
+    {
+        if (currentState != BattleState.PlayerTurn) return;
+
+        hero.Heal(30);
+
+        VerifyEndPlayerTurn();
     }
 
     private void VerifyEndPlayerTurn()
     {
-        if (enemy.isDead)
+        if (aliveEnemies.Count == 0)
         {
             currentState = BattleState.Victory;
+
+            GlobalData.playerHealth = hero.currentHP;
+            GlobalData.playerLevel = hero.level;
+            GlobalData.playerXP = hero.curXP;
+            GlobalData.nextLevelXP = hero.nextLevelXP;
+
             StartCoroutine(EndBattle(true));
         }
         else
@@ -84,7 +111,12 @@ public class TurnSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         Debug.Log("Enemy Attacked Hero!");
-        hero.TakeDamage(enemy.baseDamage);
+        foreach(CombatAttributes enemy in aliveEnemies)
+        {
+            yield return new WaitForSeconds(1f);
+            hero.TakeDamage(enemy.baseDamage);
+            if (hero.currentHP <= 0) break;
+        }
 
         if(hero.isDead)
         {
