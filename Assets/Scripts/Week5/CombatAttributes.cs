@@ -8,38 +8,28 @@ public class CombatAttributes : MonoBehaviour
     public int maxHP = 100;
     public int currentHP;
     public int baseDamage;
+    public int baseHP = 100;
     public bool isDead = false;
 
     public Slider healthBar;
 
-    [Header("Progression")]
     public int level = 1;
-    public int curXP;
-    public int nextLevelXP = 100;
 
-    [Header("Drops (Enemy)")]
-    public int xpDrop = 20;
-    public int coinDrop = 30;
+    public int curDamage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (gameObject.CompareTag("Player"))
+        CalculateStatus();
+
+        if (gameObject.CompareTag("Player") && GlobalData.playerHealth != -1)
         {
-            if (GlobalData.playerHealth != -1)
-                currentHP = GlobalData.playerHealth;
-            else
-                currentHP = maxHP;
+            currentHP = GlobalData.playerHealth;
 
             level = GlobalData.playerLevel;
-            curXP = GlobalData.playerXP;
-            nextLevelXP = GlobalData.nextLevelXP;
 
             maxHP = 100 + ((level - 1) * 20);
             baseDamage = 10 + (level - 1) * 5;
-
-            if (currentHP > maxHP)
-                currentHP = maxHP;
         }
         else
             currentHP = maxHP;
@@ -48,37 +38,17 @@ public class CombatAttributes : MonoBehaviour
         UpdateBar();
     }
 
-    public void GainXP(int amount)
+    public void CalculateStatus()
     {
-        curXP += amount;
+        maxHP = baseHP + ((level - 1) * 20);
+        curDamage = baseDamage + (level - 1) * 5;
 
-        if(curXP >= nextLevelXP)
-        {
-            LevelUp();
-        }
-    }
-
-    private void LevelUp()
-    {
-        level++;
-        curXP -= nextLevelXP;
-
-        nextLevelXP = Mathf.RoundToInt(nextLevelXP * 1.5f);
-        maxHP += 20;
-        currentHP = maxHP;
-        baseDamage += 5;
-
-        UpdateBar();
+        if(currentHP > maxHP) currentHP = maxHP;
     }
 
     public void TakeDamage(int damageValue)
     {
         currentHP -= damageValue;
-
-        Debug.Log($"{characterName} took {damageValue} damage");
-        Debug.Log($"Current HP: {currentHP}/{maxHP}");
-
-        UpdateBar();
 
         if (currentHP <= 0)
         {
@@ -86,6 +56,8 @@ public class CombatAttributes : MonoBehaviour
             isDead = true;
             gameObject.SetActive(false);
         }
+
+        UpdateBar();
     }
 
     public void Heal(int healAmount)

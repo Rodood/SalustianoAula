@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5361401376481814854}
   - component: {fileID: 2664253285375778880}
   - component: {fileID: 2437174811990433335}
+  - component: {fileID: 5781090974262167661}
   m_Layer: 6
   m_Name: Enemy_Mole_Patrol
   m_TagString: Untagged
@@ -204,6 +205,7 @@ MonoBehaviour:
   visionRadius: 3
   chaseRadius: 7
   attackDistance: 0.8
+  uniqueID: 
   arenaPrefab: {fileID: 4566729088567907843, guid: dce5dddfde8489c4ea5c58e6aa3f8cff, type: 3}
 --- !u!114 &2437174811990433335
 MonoBehaviour:
@@ -219,4 +221,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatAttributes
   characterName: Mole
   maxHP: 100
+  currentHP: 0
   baseDamage: 5
+  baseHP: 100
+  isDead: 0
+  healthBar: {fileID: 0}
+  level: 1
+  curDamage: 0
+--- !u!114 &5781090974262167661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428840449754937717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75095b5917889e34fb5a2e63ffbbbcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRewards
+  xpDrop: 20
+  coinDrop: 30

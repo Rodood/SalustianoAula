@@ -62,14 +62,22 @@ public class TurnSystem : MonoBehaviour
 
         CombatAttributes target = aliveEnemies[0];
 
-        target.TakeDamage(hero.baseDamage);
+        target.TakeDamage(hero.curDamage);
 
         if(target.currentHP <= 0)
         {
-            hero.GainXP(target.xpDrop);
+            EnemyRewards loot = target.GetComponent<EnemyRewards>();
+            PlayerEvolution evolution = hero.GetComponent<PlayerEvolution>();
 
-            GlobalData.playerEcon += target.coinDrop;
+            if (loot != null && evolution != null)
+            {
+                evolution.GainXP(loot.xpDrop);
+                GlobalData.playerEcon += loot.coinDrop;
 
+                GlobalData.playerXP = evolution.curXP;
+                GlobalData.playerLevel = hero.level;
+            }
+            
             aliveEnemies.RemoveAt(0);
         }
 
@@ -91,10 +99,11 @@ public class TurnSystem : MonoBehaviour
         {
             currentState = BattleState.Victory;
 
+            PlayerEvolution evo = hero.GetComponent<PlayerEvolution>();
+
             GlobalData.playerHealth = hero.currentHP;
             GlobalData.playerLevel = hero.level;
-            GlobalData.playerXP = hero.curXP;
-            GlobalData.nextLevelXP = hero.nextLevelXP;
+            GlobalData.playerXP = evo.curXP;
 
             StartCoroutine(EndBattle(true));
         }

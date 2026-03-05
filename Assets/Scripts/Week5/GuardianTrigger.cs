@@ -23,9 +23,23 @@ public class GuardianTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             BattleStarter starter = GetComponent<BattleStarter>();
+
+            List<int> extractedLevels = new List<int>();
+            CombatAttributes[] enemies = GetComponentsInChildren<CombatAttributes>();
+
+            foreach (var enemy in enemies)
+            {
+                extractedLevels.Add(enemy.level);
+            }
+
+            while(extractedLevels.Count < enemyGroup.Count)
+            {
+                extractedLevels.Add(1);
+            }
+
             if(starter != null)
             {
-                starter.StartBattle(collision.gameObject, uniqueID, enemyGroup);
+                starter.StartBattle(collision.gameObject, uniqueID, enemyGroup, extractedLevels);
             }
         }
     }

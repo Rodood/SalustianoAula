@@ -145,9 +145,14 @@ public class EnemyController : MonoBehaviour
         List<GameObject> _enemyList = new List<GameObject>();
         _enemyList.Add(arenaPrefab);
 
+        CombatAttributes attributes = GetComponent<CombatAttributes>();
+        List<int> levelList = new List<int>();
+        levelList.Add(attributes.level);
+
+
         if (starter != null)
         {
-            starter.StartBattle(playerPos.gameObject, uniqueID, _enemyList);
+            starter.StartBattle(playerPos.gameObject, uniqueID, _enemyList, levelList);
         }
     }
 

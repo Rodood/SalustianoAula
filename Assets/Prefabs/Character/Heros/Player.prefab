@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8564892071152469842}
   - component: {fileID: 8510033271665753138}
   - component: {fileID: 5263361282832635042}
+  - component: {fileID: 7214752915706197734}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -224,5 +225,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatAttributes
   characterName: Hero
   maxHP: 100
+  currentHP: 0
   baseDamage: 10
+  baseHP: 100
   isDead: 0
+  healthBar: {fileID: 0}
+  level: 1
+  curDamage: 0
+--- !u!114 &7214752915706197734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124916318646952364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b609b7d9c64534f8a15e04a6ff669b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEvolution
+  curXP: 0
+  nextLevelXP: 64000000fa00000088130000

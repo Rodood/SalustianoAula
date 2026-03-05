@@ -24,7 +24,17 @@ public class CombatManager : MonoBehaviour
         {
             if (i >= enemyPoints.Length) break;
 
-            Instantiate(enemies[i], enemyPoints[i].position, Quaternion.identity);
+            GameObject createdMonster = Instantiate(enemies[i], enemyPoints[i].position, 
+                Quaternion.identity);
+
+            CombatAttributes attributes = createdMonster.GetComponent<CombatAttributes>();
+            if(attributes != null && i < GlobalData.niveisInimigosParaArena.Count)
+            {
+                attributes.level = GlobalData.niveisInimigosParaArena[i];
+
+                attributes.CalculateStatus();
+                attributes.currentHP = attributes.maxHP;
+            }
         }
     }
 }
