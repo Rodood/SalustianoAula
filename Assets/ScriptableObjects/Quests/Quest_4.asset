@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c988bc937682047a05b976dd29d9fb, type: 3}
+  m_Name: Quest_4
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questName: Give
+  questType: 0
+  npcGiverName: Hunter
+  npcReceiverName: Peasant
+  startDialogue: "Leve esta po\xE7\xE3o com seguran\xE7a para o Alde\xE3o."
+  middleDialogue: 
+  endDialogue: "Gra\xE7as a Deus voc\xEA voltou! A nossa vila est\xE1 a salvo."
+  hudDescription: 
+  objectiveAmount: 0
+  collectableObjectiveItem: 
+  goldRewards: 0
+  xpRewards: 0
+  nextAvailableQuest: {fileID: 0}

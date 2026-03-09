@@ -74,10 +74,19 @@ public class TurnSystem : MonoBehaviour
                 evolution.GainXP(loot.xpDrop);
                 GlobalData.playerEcon += loot.coinDrop;
 
-                GlobalData.playerXP = evolution.curXP;
-                GlobalData.playerLevel = hero.level;
+                if (GlobalData.currentQuest != null)
+                {
+                    if (GlobalData.currentQuest.questType == QuestType.HuntCreatures ||
+                        GlobalData.currentQuest.questType == QuestType.HuntCreatures)
+                    {
+                        GlobalData.currentQuestProgress++;
+                        Debug.Log("Quest Atualizada no Console: " +
+                            GlobalData.currentQuestProgress + "/" +
+                            GlobalData.currentQuest.objectiveAmount);
+                    }
+                }
             }
-            
+
             aliveEnemies.RemoveAt(0);
         }
 

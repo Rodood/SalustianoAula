@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c988bc937682047a05b976dd29d9fb, type: 3}
+  m_Name: Quest_3
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questName: Claw
+  questType: 2
+  npcGiverName: 
+  npcReceiverName: 
+  startDialogue: "Agora a parte dif\xEDcil. Precisamos de 1 Garra de Toupeira gigante
+    para o feiti\xE7o!"
+  middleDialogue: "As toupeiras s\xE3o perigosas. Volte quando conseguir a garra."
+  endDialogue: "Incr\xEDvel! Com esta garra a po\xE7\xE3o est\xE1 pronta. Pegue a
+    sua recompensa."
+  hudDescription: 
+  objectiveAmount: 1
+  collectableObjectiveItem: Mole's Claw
+  goldRewards: 0
+  xpRewards: 0
+  nextAvailableQuest: {fileID: 11400000, guid: c6ea890b3792f4c4aacfc0f833942725, type: 2}

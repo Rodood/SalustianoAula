@@ -15,4 +15,10 @@ public static class GlobalData
     public static int playerXP;
     public static int nextLevelXP = 100;
     public static int playerEcon;
+    public static int playerPotions;
+
+    public static Quest availableQuest;
+    public static Quest currentQuest;
+    public static int currentQuestProgress = 0;
+    public static bool historyFinished = false;
 }

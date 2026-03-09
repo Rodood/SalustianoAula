@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c988bc937682047a05b976dd29d9fb, type: 3}
+  m_Name: Quest_1
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questName: Search
+  questType: 0
+  npcGiverName: Peasant
+  npcReceiverName: Hunter
+  startDialogue: "O Ca\xE7ador precisa de ajuda com uma po\xE7\xE3o. V\xE1 procur\xE1-lo!"
+  middleDialogue: 
+  endDialogue: "Ah, o Alde\xE3o te mandou? \xD3timo, preciso de ingredientes."
+  hudDescription: 
+  objectiveAmount: 0
+  collectableObjectiveItem: 
+  goldRewards: 0
+  xpRewards: 0
+  nextAvailableQuest: {fileID: 11400000, guid: 43688a1e4d8b577408082bc91f73e90e, type: 2}

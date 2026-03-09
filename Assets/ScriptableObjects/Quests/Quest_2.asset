@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c988bc937682047a05b976dd29d9fb, type: 3}
+  m_Name: Quest_2
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questName: Plants
+  questType: 2
+  npcGiverName: Hunter
+  npcReceiverName: Hunter
+  startDialogue: "Primeiro, enfrente aquelas \xE1rvores vivas e me traga 2 Plantas
+    Curativas!"
+  middleDialogue: "Ainda n\xE3o tem todas as plantas?"
+  endDialogue: "Perfeito! As plantas est\xE3o frescas."
+  hudDescription: 
+  objectiveAmount: 2
+  collectableObjectiveItem: Plants
+  goldRewards: 0
+  xpRewards: 0
+  nextAvailableQuest: {fileID: 11400000, guid: ab80f8dbfc509db4c9692e86c2741dd6, type: 2}
