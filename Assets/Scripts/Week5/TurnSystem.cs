@@ -22,6 +22,9 @@ public class TurnSystem : MonoBehaviour
     CombatAttributes hero;
     List<CombatAttributes> aliveEnemies = new List<CombatAttributes>();
 
+    public DataItem lifePotion;
+    public Button btnPotion;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,14 +34,19 @@ public class TurnSystem : MonoBehaviour
 
     IEnumerator ConfigureBattle()
     {
-        Debug.Log("Preparing Battle...");
-        yield return new WaitForSeconds(1f);
-
         hero = GameObject.FindGameObjectWithTag("Player").
             GetComponent<CombatAttributes>();
 
         hero.healthBar = heroSlider;
         hero.UpdateBar();
+
+        if(!GetComponent<InventorySystem>().HasItem(lifePotion, 1))
+        {
+            btnPotion.interactable = false;
+        }
+
+        Debug.Log("Preparing Battle...");
+        yield return new WaitForSeconds(1f);
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -77,7 +85,7 @@ public class TurnSystem : MonoBehaviour
                 if (GlobalData.currentQuest != null)
                 {
                     if (GlobalData.currentQuest.questType == QuestType.HuntCreatures ||
-                        GlobalData.currentQuest.questType == QuestType.HuntCreatures)
+                        GlobalData.currentQuest.questType == QuestType.CollecItems)
                     {
                         GlobalData.currentQuestProgress++;
                         Debug.Log("Quest Atualizada no Console: " +
@@ -97,9 +105,40 @@ public class TurnSystem : MonoBehaviour
     {
         if (currentState != BattleState.PlayerTurn) return;
 
-        hero.Heal(30);
+        bool consumiuApenasUma = false;
 
-        VerifyEndPlayerTurn();
+        // 1. Procura a poção no Inventário Global
+        foreach (InventorySlots slot in GlobalData.inventarioAtual)
+        {
+            if (slot.itemData == lifePotion && slot.quantity > 0)
+            {
+                slot.quantity--; // Gasta 1
+                consumiuApenasUma = true;
+
+                // Limpa da lista se a quantidade chegar a zero
+                if (slot.quantity <= 0)
+                {
+                    GlobalData.inventarioAtual.Remove(slot);
+                    //Desabilita Botao
+                    btnPotion.interactable = false;
+                }
+
+                break; // Para o loop para não gastar 2 poções de uma vez!
+            }
+        }
+
+        // 2. Aplica a cura se o jogador tinha a poção!
+        if (consumiuApenasUma)
+        {
+            hero.Heal(50);     // Cura
+            Debug.Log("Você bebeu a poção deliciosa!");
+            VerifyEndPlayerTurn(); // Passa o turno
+        }
+        else
+        {
+            Debug.LogWarning("Inventário vazio! Você não tem mais Poções de Vida!");
+        }
+
     }
 
     private void VerifyEndPlayerTurn()

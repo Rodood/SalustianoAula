@@ -3306,6 +3306,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurnSystem
   currentState: 0
   heroSlider: {fileID: 375473288}
+  lifePotion: {fileID: 11400000, guid: d0a579b8b53575241be70be7f7d14fd1, type: 2}
+  btnPotion: {fileID: 1750997819}
 --- !u!4 &1687185389
 Transform:
   m_ObjectHideFlags: 0

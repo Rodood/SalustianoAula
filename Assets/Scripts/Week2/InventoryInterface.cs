@@ -23,7 +23,7 @@ public class InventoryInterface : MonoBehaviour
     {
         if(coinText != null)
         {
-            coinText.text = "Gold: " + inventorySystem.coin.ToString();
+            coinText.text = "Gold: " + GlobalData.playerEcon.ToString();
         }
 
         for (int i = gridContainer.childCount - 1; i >= 0; i--)

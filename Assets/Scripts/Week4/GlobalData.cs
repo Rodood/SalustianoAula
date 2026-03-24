@@ -17,6 +17,8 @@ public static class GlobalData
     public static int playerEcon;
     public static int playerPotions;
 
+    public static List<InventorySlots> inventarioAtual = new List<InventorySlots>();
+
     public static int attackBonus = 0;
     public static int defenseBonus = 0;
     public static int maxBonuseHP = 0;

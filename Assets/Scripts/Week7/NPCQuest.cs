@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using static UnityEditor.Rendering.MaterialUpgrader;
 
 public class NPCQuest: MonoBehaviour
 {
@@ -14,12 +16,16 @@ public class NPCQuest: MonoBehaviour
     bool playerNear = false;
     GameObject playerRef;
 
+    [Header("Interface de Diálogo")]
+    public GameObject dialoguePanel;
+    public TextMeshProUGUI dialogueText;
+
     private void Start()
     {
         if(gameStartingQuest != null && GlobalData.availableQuest == null &&
             GlobalData.currentQuest == null && !GlobalData.historyFinished)
         {
-            GlobalData.currentQuest = gameStartingQuest;
+            GlobalData.availableQuest = gameStartingQuest;
         }
     }
 
@@ -38,7 +44,7 @@ public class NPCQuest: MonoBehaviour
         if (GlobalData.historyFinished) return;
 
         if(GlobalData.currentQuest == null && GlobalData.availableQuest != null && 
-            GlobalData.currentQuest.npcGiverName == npcName)
+            GlobalData.availableQuest.npcGiverName == npcName)
         {
             visualIndicator.color = Color.blue;
             visualIndicator.gameObject.SetActive(true);
@@ -52,9 +58,12 @@ public class NPCQuest: MonoBehaviour
 
     private void Interact()
     {
+        if (dialoguePanel != null) dialoguePanel.SetActive(true);
+        if(dialogueText == null) return;
+
         if (GlobalData.historyFinished)
         {
-            Debug.Log(npcName + " diz: A paz reina na nossa floresta graças a você!");
+            dialogueText.text = "A paz reina na nossa floresta graças a você!";
             return;
         }
 
@@ -72,21 +81,21 @@ public class NPCQuest: MonoBehaviour
 
                 if(finishedHunt || finishedGathering || finishedDelivery)
                 {
-                    Debug.Log(npcName + " diz: " + quest.endDialogue + "(Received " +
-                        quest.goldRewards + " Ouro!)");
+                    dialogueText.text = quest.endDialogue + "\n\n(Recebeu " +
+                        quest.goldRewards + " Ouro!)";
+                    DeliverReward(quest);
                 }
                 else
                 {
-                    Debug.Log(npcName + " diz: " + quest.middleDialogue + " (Progresso: " 
-                        + GlobalData.currentQuestProgress + 
-                        "/" + quest.objectiveAmount + " " + quest.collectableObjectiveItem + ")");
-
+                    dialogueText.text = quest.middleDialogue + "\n(Progresso: " 
+                        + GlobalData.currentQuestProgress + "/" + quest.objectiveAmount +
+                        " " + quest.collectableObjectiveItem + ")";
                 }
             }
             else
             {
-                Debug.Log(npcName + " diz: O " + quest.npcReceiverName + 
-                    " está à sua espera. Não perca tempo aqui!");
+                dialogueText.text = "O " + quest.npcReceiverName + 
+                    " está à sua espera. Não perca tempo aqui!";
             }
             return;
         }
@@ -95,20 +104,28 @@ public class NPCQuest: MonoBehaviour
         {
             if(GlobalData.availableQuest.npcGiverName == npcName)
             {
-                Debug.Log(npcName + " diz: " + GlobalData.availableQuest.startDialogue);
+                dialogueText.text = GlobalData.availableQuest.startDialogue;
                 GlobalData.currentQuest = GlobalData.availableQuest;
                 GlobalData.availableQuest = null;
                 GlobalData.currentQuestProgress = 0;
             }
             else
             {
-                Debug.Log(npcName + " diz: Ouvi dizer que o " + 
-                    GlobalData.availableQuest.npcReceiverName + " está à sua procura.");
+                dialogueText.text = " diz: Ouvi dizer que o " + 
+                    GlobalData.availableQuest.npcReceiverName + " está à sua procura.";
             }
             return;
         }
 
-        Debug.Log(npcName + " diz: Olá aventureiro! O dia está lindo hoje.");
+        dialogueText.text = "Olá aventureiro! O dia está lindo hoje.";
+    }
+
+    public void CloseDialogue()
+    {
+        if(dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
     }
 
     void DeliverReward(Quest finishedQuest)
@@ -136,6 +153,9 @@ public class NPCQuest: MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
+        {
             playerNear = false;
+            CloseDialogue();
+        }
     }
 }

@@ -8,13 +8,8 @@ public class CollectableCoin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            InventorySystem inventorySystem = FindFirstObjectByType<InventorySystem>();
-
-            if (inventorySystem != null)
-            {
-                inventorySystem.ModifyCoin(value);
-                Destroy(gameObject);
-            }
+            GlobalData.playerEcon += value;
+            Destroy(gameObject);
         }
     }
 }

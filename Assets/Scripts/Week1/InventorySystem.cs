@@ -12,6 +12,19 @@ public class InventorySystem : MonoBehaviour
 
     public event Action onInventoryChanged;
 
+    private void Awake()
+    {
+        if(GlobalData.inventarioAtual.Count == 0 && inventory.Count > 0)
+        {
+            GlobalData.inventarioAtual = new List<InventorySlots>(inventory);
+            coin = GlobalData.playerEcon;
+        }
+
+        inventory = GlobalData.inventarioAtual;
+
+        coin = GlobalData.playerEcon;
+    }
+
     public void AddItem(DataItem item, int qtd)
     {
         if (item.stackable)
