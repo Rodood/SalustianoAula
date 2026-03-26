@@ -12,13 +12,7 @@ public class PlayerEvolution : MonoBehaviour
     {
         attributes = GetComponent<CombatAttributes>();
 
-        if(GlobalData.playerLevel > 1 || GlobalData.playerXP > 0)
-        {
-            attributes.level = GlobalData.playerLevel;
-            curXP = GlobalData.playerXP;
-
-            attributes.CalculateStatus();
-        }
+        BattleStarter.CarregarDadosJogador(gameObject);
     }
 
     public void GainXP(int amount)

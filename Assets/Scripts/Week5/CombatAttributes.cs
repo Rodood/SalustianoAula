@@ -11,37 +11,31 @@ public class CombatAttributes : MonoBehaviour
     public int baseHP = 100;
     public bool isDead = false;
 
+    public int bonusAtk = 0;
+    public int bonusDef = 0;
+
     public Slider healthBar;
 
     public int level = 1;
 
     public int curDamage;
 
+    private void Awake()
+    {
+        CalculateStatus();
+        currentHP = maxHP;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CalculateStatus();
-
-        if (gameObject.CompareTag("Player") && GlobalData.playerHealth != -1)
-        {
-            currentHP = GlobalData.playerHealth;
-
-            level = GlobalData.playerLevel;
-
-            maxHP = 100 + ((level - 1) * 20);
-            baseDamage = 10 + (level - 1) * 5;
-        }
-        else
-            currentHP = maxHP;
-
-        isDead = false;
         UpdateBar();
     }
 
     public void CalculateStatus()
     {
-        maxHP = baseHP + ((level - 1) * 20);
-        curDamage = baseDamage + (level - 1) * 5;
+        maxHP = baseHP + ((level - 1) * 20) + bonusDef;
+        curDamage = baseDamage + ((level - 1) * 5) + bonusAtk;
 
         if(currentHP > maxHP) currentHP = maxHP;
     }
