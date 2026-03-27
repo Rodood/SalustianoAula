@@ -40,7 +40,7 @@ public class TurnSystem : MonoBehaviour
         hero.healthBar = heroSlider;
         hero.UpdateBar();
 
-        if(!GetComponent<InventorySystem>().HasItem(lifePotion, 1))
+        if(!hero.GetComponent<InventorySystem>().HasItem(lifePotion, 1))
         {
             btnPotion.interactable = false;
         }
@@ -72,15 +72,20 @@ public class TurnSystem : MonoBehaviour
 
         target.TakeDamage(hero.curDamage);
 
-        if(target.currentHP <= 0)
+        if(target.isDead)
         {
             EnemyRewards loot = target.GetComponent<EnemyRewards>();
             PlayerEvolution evolution = hero.GetComponent<PlayerEvolution>();
+
+            Debug.Log(evolution == null);
+            Debug.Log(loot == null);
 
             if (loot != null && evolution != null)
             {
                 evolution.GainXP(loot.xpDrop);
                 GlobalData.playerEcon += loot.coinDrop;
+
+                Debug.Log($"Você ganhou {loot.xpDrop} de XP e {loot.coinDrop} de Ouro");
 
                 if (GlobalData.currentQuest != null)
                 {
@@ -94,6 +99,10 @@ public class TurnSystem : MonoBehaviour
                     }
                 }
             }
+
+            Debug.Log("End");
+
+            target.gameObject.SetActive(false);
 
             aliveEnemies.RemoveAt(0);
         }

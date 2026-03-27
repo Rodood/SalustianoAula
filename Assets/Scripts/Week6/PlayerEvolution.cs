@@ -5,7 +5,7 @@ public class PlayerEvolution : MonoBehaviour
     [Header("Progression")]
     public int curXP;
 
-    public int[] nextLevelXP = new int[] { 100, 250, 5000 };
+    public int[] nextLevelXP = new int[] { 100, 250, 500, 1000, 2000 };
     private CombatAttributes attributes;
 
     private void Start()

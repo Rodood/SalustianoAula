@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 7963013574158414581}
   - component: {fileID: 2024268686634980477}
   - component: {fileID: 4636616578058847250}
+  - component: {fileID: -2573243715572560341}
   m_Layer: 0
   m_Name: Enemy_Treant
   m_TagString: Enemy
@@ -307,9 +308,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatAttributes
   characterName: Treant
   maxHP: 70
-  baseDamage: 7
+  currentHP: 0
+  baseDamage: 20
+  baseHP: 100
   isDead: 0
+  bonusAtk: 0
+  bonusDef: 0
   healthBar: {fileID: 4584549821034657256}
+  level: 1
+  curDamage: 0
+--- !u!114 &-2573243715572560341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3740633365587074287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75095b5917889e34fb5a2e63ffbbbcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRewards
+  xpDrop: 50
+  coinDrop: 30
 --- !u!1 &5103938082011572050
 GameObject:
   m_ObjectHideFlags: 0

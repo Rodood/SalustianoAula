@@ -48,7 +48,6 @@ public class CombatAttributes : MonoBehaviour
         {
             currentHP = 0;
             isDead = true;
-            gameObject.SetActive(false);
         }
 
         UpdateBar();

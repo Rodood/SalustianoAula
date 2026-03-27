@@ -639,7 +639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &158266888
@@ -1525,10 +1525,10 @@ MonoBehaviour:
   textoFeedbackCompra: {fileID: 1302306475}
   containerVendas: {fileID: 754193161}
   prefabBotaoVenda: {fileID: 6885479659956587012, guid: 5fd0fa629bdd1904d9e0648ff7052895, type: 3}
-  sistemaInventario: {fileID: 1684546245}
+  sistemaInventario: {fileID: 8664924838093465876}
   atributosCombate: {fileID: 8664924838093465868}
   pocaoDeVida: {fileID: 11400000, guid: d0a579b8b53575241be70be7f7d14fd1, type: 2}
-  precoPocao: 50
+  precoPocao: 30
   precoAfiarEspada: 100
   precoArmadura: 150
 --- !u!50 &292990321
@@ -4631,7 +4631,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1024454091}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1302306477}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 433732437}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1024454091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4872,6 +4896,7 @@ GameObject:
   - component: {fileID: 1143528787}
   - component: {fileID: 1143528786}
   - component: {fileID: 1143528785}
+  - component: {fileID: 1143528788}
   m_Layer: 5
   m_Name: Painel_Status
   m_TagString: Untagged
@@ -4969,6 +4994,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143528783}
   m_CullTransparentMesh: 1
+--- !u!114 &1143528788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143528783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2aa4b3dfe8e49c41a4b8cd5ecfe34b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FichaStatus
+  txtNome: {fileID: 1824847311}
+  txtNivel: {fileID: 269956755}
+  txtAtaque: {fileID: 739982973}
+  txtVida: {fileID: 1510565274}
+  barraXP: {fileID: 1457320725}
+  txtNumerosXP: {fileID: 2096593640}
 --- !u!1 &1153121287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5569,7 +5612,7 @@ PrefabInstance:
       objectReference: {fileID: 292990320}
     - target: {fileID: 575267222417956972, guid: 1f18c034658c69e44a99afff741e1e16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ComprarUpgradeAtaque
+      value: ComprarMelhoriaEspada
       objectReference: {fileID: 0}
     - target: {fileID: 4906538643235971641, guid: 1f18c034658c69e44a99afff741e1e16, type: 3}
       propertyPath: m_Pivot.x
@@ -5657,7 +5700,7 @@ PrefabInstance:
       objectReference: {fileID: 292990320}
     - target: {fileID: 5465371977067719848, guid: 1f18c034658c69e44a99afff741e1e16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ComprarPocaoCura
+      value: ComprarPocao
       objectReference: {fileID: 0}
     - target: {fileID: 7935598251603384344, guid: 1f18c034658c69e44a99afff741e1e16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5665,7 +5708,7 @@ PrefabInstance:
       objectReference: {fileID: 292990320}
     - target: {fileID: 7935598251603384344, guid: 1f18c034658c69e44a99afff741e1e16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ComprarUpgradeDefesa
+      value: ComprarMelhoriaArmadura
       objectReference: {fileID: 0}
     - target: {fileID: 8007433432696116223, guid: 1f18c034658c69e44a99afff741e1e16, type: 3}
       propertyPath: m_Name
@@ -10485,10 +10528,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684546247}
-  - component: {fileID: 1684546246}
-  - component: {fileID: 1684546245}
   - component: {fileID: 1684546248}
   - component: {fileID: 1684546249}
+  - component: {fileID: 1684546250}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -10496,34 +10538,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1684546245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684546244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00eb658658303c14ca4861f34ff945f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySystem
-  coin: 14
---- !u!114 &1684546246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684546244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2829246e5daf4254e9a94ae67f322fd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryTest
-  inventory: {fileID: 1684546245}
-  sword: {fileID: 11400000, guid: a606a65074f40654da8aa0dff4978a7e, type: 2}
-  potion: {fileID: 11400000, guid: d0a579b8b53575241be70be7f7d14fd1, type: 2}
 --- !u!4 &1684546247
 Transform:
   m_ObjectHideFlags: 0
@@ -10551,7 +10565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78f08f2feca6db4e9123b5dbf95fb14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryInterface
-  inventorySystem: {fileID: 1684546245}
+  inventorySystem: {fileID: 8664924838093465876}
   gridContainer: {fileID: 523943702}
   slotPrefab: {fileID: 6303951034677236734, guid: 7367803bb496e394fa2438853a267146, type: 3}
   coinText: {fileID: 2036746350}
@@ -10567,11 +10581,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133c40c7a20b7fb4a92448eb1da0d980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleCrafting
-  inventorySystem: {fileID: 1684546245}
+  inventorySystem: {fileID: 8664924838093465876}
   wood: {fileID: 11400000, guid: a25071971246d9c49b3d0e95b5795339, type: 2}
   arrow: {fileID: 11400000, guid: 32c02f2bb504ed746980284bd09543b9, type: 2}
   woodCost: 1
   amountProduced: 3
+--- !u!114 &1684546250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684546244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2829246e5daf4254e9a94ae67f322fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryTest
+  inventory: {fileID: 8664924838093465876}
+  sword: {fileID: 11400000, guid: a606a65074f40654da8aa0dff4978a7e, type: 2}
+  potion: {fileID: 11400000, guid: d0a579b8b53575241be70be7f7d14fd1, type: 2}
 --- !u!1 &1695163565
 GameObject:
   m_ObjectHideFlags: 0
@@ -15090,7 +15119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6008376996425444506, guid: 01948c73a07ae0046999e0ca4dcf5fd6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15176,11 +15205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2661826128462077901, guid: 4bc113d11a3d01e439fbb82c0ad02292, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7733760783750547350, guid: 4bc113d11a3d01e439fbb82c0ad02292, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.08
+      value: -3.95
       objectReference: {fileID: 0}
     - target: {fileID: 7733760783750547350, guid: 4bc113d11a3d01e439fbb82c0ad02292, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15279,6 +15308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2782393999129085611, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
+      propertyPath: coin
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 8510033271665753138, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
       propertyPath: craftBtn
       value: 
@@ -15290,45 +15323,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1124916318646952364, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8664924838093465870}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
 --- !u!114 &8664924838093465868 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5263361282832635042, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
   m_PrefabInstance: {fileID: 8664924838093465867}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8664924838093465869}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2764e1a5354cb4642bc8a9b2334f899b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatAttributes
---- !u!1 &8664924838093465869 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1124916318646952364, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
+--- !u!114 &8664924838093465876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2782393999129085611, guid: 92a21fb86888415478fe2af540fb94d4, type: 3}
   m_PrefabInstance: {fileID: 8664924838093465867}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8664924838093465870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8664924838093465869}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2aa4b3dfe8e49c41a4b8cd5ecfe34b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 00eb658658303c14ca4861f34ff945f2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FichaStatus
-  txtNome: {fileID: 1824847311}
-  txtNivel: {fileID: 269956755}
-  txtAtaque: {fileID: 739982973}
-  txtVida: {fileID: 1510565274}
-  barraXP: {fileID: 1457320725}
-  txtNumerosXP: {fileID: 2096593640}
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySystem
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 1388298161652298419}
   - component: {fileID: 8004866423794546196}
   - component: {fileID: 7098112233453969649}
+  - component: {fileID: 6621749585593667035}
   m_Layer: 0
   m_Name: Enemy_Mole
   m_TagString: Enemy
@@ -417,11 +418,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatAttributes
   characterName: Mole
-  maxHP: 30
+  maxHP: 60
   currentHP: 0
-  baseDamage: 5
+  baseDamage: 15
+  baseHP: 100
   isDead: 0
+  bonusAtk: 0
+  bonusDef: 0
   healthBar: {fileID: 2277431601540245026}
+  level: 1
+  curDamage: 0
+--- !u!114 &6621749585593667035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566729088567907843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75095b5917889e34fb5a2e63ffbbbcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRewards
+  xpDrop: 20
+  coinDrop: 30
 --- !u!1 &5840709746259462834
 GameObject:
   m_ObjectHideFlags: 0
